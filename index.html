@@ -25,6 +25,7 @@
       --navy-mid:   #243547;
       --gold:       #c5993e;
       --gold-lt:    #d4ad60;
+      --gold-ink:   #8a641e;
       --gold-pale:  #f5eedd;
       --cream:      #f8f6f2;
       --white:      #ffffff;
@@ -67,7 +68,7 @@
       font-weight: 600;
       letter-spacing: .2em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--gold-ink);
       margin-bottom: 14px;
     }
 
@@ -104,8 +105,15 @@
     }
     .btn:hover { transform: translateY(-1px); }
 
-    .btn-gold { background: var(--gold); color: var(--white); }
-    .btn-gold:hover { background: #b08832; }
+    .btn-gold { background: var(--gold); color: var(--navy); }
+    .btn-gold:hover { background: var(--gold-lt); }
+
+    .btn:focus-visible {
+      outline: 3px solid var(--navy);
+      outline-offset: 3px;
+    }
+
+    .btn-outline-white:focus-visible { outline-color: var(--white); }
 
     .btn-navy { background: var(--navy); color: var(--white); }
     .btn-navy:hover { background: var(--navy-dk); }
@@ -219,7 +227,17 @@
       color: #0f1e2e;
       transition: color .18s;
     }
-    .nav-links a:hover { color: #c5993e; }
+    .nav-links a:not(.btn):hover {
+      color: var(--navy);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .nav-links a:not(.btn):focus-visible,
+    .nav-toggle:focus-visible {
+      outline: 3px solid var(--navy);
+      outline-offset: 3px;
+    }
 
     .nav-cta { padding: 10px 20px; font-size: 13px; margin-left: 6px; }
 
@@ -281,6 +299,15 @@
       transition: opacity 1.4s ease;
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      #heroBefore.cinematic,
+      #heroVideo.cinematic,
+      #heroAfter.cinematic,
+      #heroFinal.cinematic {
+        transition: none;
+      }
+    }
+
     /* Show class added by JS to fade in each subsequent layer */
     .media-visible { opacity: 1 !important; }
 
@@ -307,6 +334,15 @@
       max-width: var(--max-w);
       margin: 0 auto;
       width: 100%;
+    }
+
+    .hero-copy-panel {
+      width: min(100%, 720px);
+      padding: 34px 36px 38px;
+      background: rgba(8, 20, 31, .90);
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 10px;
+      box-shadow: 0 18px 48px rgba(0, 0, 0, .28);
     }
 
     /* Hero text fade — fades slowly after message lands */
@@ -579,7 +615,7 @@
     }
 
     .comparison-slider:focus-within .comparison-handle {
-      outline: 3px solid var(--gold);
+      outline: 3px solid var(--navy);
       outline-offset: 4px;
     }
 
@@ -680,51 +716,10 @@
 
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1.1fr;
-      gap: 72px;
-      align-items: center;
-    }
-
-    .about-photo-wrap { position: relative; }
-
-    .about-photo {
-      aspect-ratio: 4/5;
-      background: var(--navy-mid);
-      border-radius: 4px;
-      border: 1px solid rgba(255,255,255,.08);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      grid-template-columns: minmax(0, 820px);
       justify-content: center;
-      gap: 12px;
-    }
-
-    .about-photo-lbl {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: rgba(197,153,62,.35);
-    }
-
-    .about-photo-wrap::before {
-      content: '';
-      position: absolute;
-      top: -10px; left: -10px;
-      width: 40px; height: 40px;
-      border-top: 2.5px solid var(--gold);
-      border-left: 2.5px solid var(--gold);
-      border-radius: 1px;
-    }
-
-    .about-photo-wrap::after {
-      content: '';
-      position: absolute;
-      bottom: -10px; right: -10px;
-      width: 40px; height: 40px;
-      border-bottom: 2.5px solid var(--gold);
-      border-right: 2.5px solid var(--gold);
-      border-radius: 1px;
+      gap: 0;
+      align-items: center;
     }
 
     .about-content .section-h { color: var(--white); }
@@ -910,7 +905,7 @@
     .fgroup input:focus,
     .fgroup select:focus,
     .fgroup textarea:focus {
-      border-color: var(--gold);
+      border-color: var(--gold-ink);
       background: var(--white);
     }
 
@@ -961,13 +956,13 @@
       width: 52px;
       height: 52px;
       background: rgba(197,153,62,.10);
-      border: 2px solid var(--gold);
+      border: 2px solid var(--gold-ink);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 22px;
-      color: var(--gold);
+      color: var(--gold-ink);
       margin: 0 auto 22px;
     }
 
@@ -1232,11 +1227,16 @@
       .proc-step:not(:last-child)::after { display: none; }
 
       .hero-h { font-size: clamp(30px, 7.5vw, 46px); }
+      .hero-copy-panel { padding: 28px 24px 30px; }
     }
 
     @media (max-width: 520px) {
       .hero-ctas { flex-direction: column; }
       .contact-form { padding: 26px 20px; }
+    }
+
+    @media (max-width: 390px) {
+      .services-grid { grid-template-columns: minmax(0, 1fr); }
     }
   
     /* ─── Hero end-state prompt ──────────────────────────────────────────── */
@@ -1351,16 +1351,18 @@
 
     <!-- Hero content -->
     <div class="hero-inner" id="heroContent">
-      <div class="hero-badge">360 Design &amp; Construction · Tulsa, Oklahoma</div>
-      <h1 class="hero-h">
-        Renovation Should Feel<br/>Clear, Not Overwhelming.
-      </h1>
-      <p class="hero-sub">
-        360 Design &amp; Construction helps homeowners, investors, and business owners improve their spaces with practical design guidance, clear communication, and dependable follow through.
-      </p>
-      <div class="hero-ctas">
-        <a href="#contact" class="btn btn-gold">Request a Project Consultation</a>
-        <a href="#portfolio" class="btn btn-outline-white">See Our Work</a>
+      <div class="hero-copy-panel">
+        <div class="hero-badge">360 Design &amp; Construction · Tulsa, Oklahoma</div>
+        <h1 class="hero-h">
+          Renovation Should Feel<br/>Clear, Not Overwhelming.
+        </h1>
+        <p class="hero-sub">
+          360 Design &amp; Construction helps homeowners, investors, and business owners improve their spaces with practical design guidance, clear communication, and dependable follow through.
+        </p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-gold">Request a Project Consultation</a>
+          <a href="#portfolio" class="btn btn-outline-white">See Our Work</a>
+        </div>
       </div>
     </div>
 
@@ -1540,17 +1542,6 @@
     <div class="container">
       <div class="about-grid">
 
-        <div class="about-photo-wrap">
-          <!-- CODE NOTE: Replace placeholder below with <img src="./images/alena.jpg" alt="Alena, 360 Design &amp; Construction" /> when photo is available -->
-          <div class="about-photo">
-            <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="26" cy="17" r="11" stroke="rgba(197,153,62,0.35)" stroke-width="2"/>
-              <path d="M4 48c0-12.15 9.85-22 22-22s22 9.85 22 22" stroke="rgba(197,153,62,0.35)" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-            <div class="about-photo-lbl">Photo · Alena</div>
-          </div>
-        </div>
-
         <div class="about-content">
           <p class="eyebrow">About 360 Design &amp; Construction</p>
           <h2 class="section-h">Led by Alena.<br/>Built Around Clear Communication.</h2>
@@ -1626,7 +1617,7 @@
           <p class="section-sub">Tell us about your project and we will be in touch to set up a conversation. No obligation. Just a straightforward discussion about what your space needs.</p>
 
           <div class="booking-cta-wrap" data-booking-cta hidden>
-            <a class="btn btn-gold" data-booking-link href="#" target="_blank" rel="noopener noreferrer">Schedule a Project Call</a>
+            <a class="btn btn-gold" href="#contact">Request a Project Consultation</a>
             <p class="booking-cta-note">Prefer to choose a time now? View Alena's available consultation times.</p>
           </div>
 
@@ -1787,7 +1778,7 @@
           <h3 class="form-ty-h">Request Received</h3>
           <p class="form-ty-msg">Thank you. Your project consultation request has been received. We will review the details and follow up to schedule a conversation about your space.</p>
           <div class="booking-cta-wrap" data-booking-cta hidden>
-            <a class="btn btn-gold" data-booking-link href="#" target="_blank" rel="noopener noreferrer">Schedule a Project Call</a>
+            <a class="btn btn-gold" href="#contact">Request a Project Consultation</a>
             <p class="booking-cta-note">If you are ready, choose an available time for the first conversation.</p>
           </div>
         </div>
@@ -1805,7 +1796,7 @@
 
         <div class="footer-brand">
           <div class="footer-logo-wrap">
-            <img src="./images/logo.png" alt="360 Design &amp; Construction" class="footer-logo-img" />
+          <img src="./images/logo-dark-bg.png" alt="360 Design &amp; Construction" class="footer-logo-img" />
           </div>
           <p>Helping property owners improve, renovate, and reimagine spaces through practical design, quality workmanship, and clear communication.</p>
         </div>
@@ -2016,6 +2007,11 @@
       var heroFinal   = document.getElementById('heroFinal');
       var overlay     = document.querySelector('.hero-overlay');
       var heroContent = document.getElementById('heroContent');
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        if (heroFinal) heroFinal.classList.add('media-visible');
+        return;
+      }
 
       // Add transition class after first paint to prevent load flash
       requestAnimationFrame(function () {
