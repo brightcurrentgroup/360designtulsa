@@ -14,6 +14,26 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Remodeling, design, renovation, and property improvement",
+    "serviceType": "Remodeling, design, renovation, and property improvement",
+    "description": "360 Design & Construction helps Tulsa-area homeowners, investors, and property owners with remodeling, design, renovation, and property improvement projects.",
+    "url": "https://360designtulsa.com/",
+    "areaServed": {
+      "@type": "AdministrativeArea",
+      "name": "Tulsa, Oklahoma and surrounding areas"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "360 Design & Construction",
+      "url": "https://360designtulsa.com/",
+      "logo": "https://360designtulsa.com/images/logo.png"
+    }
+  }
+  </script>
 
   <style>
     /* ─── Reset ────────────────────────────────────────────────── */
@@ -41,7 +61,10 @@
       --max-w:      1120px;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 176px;
+    }
 
     body {
       font-family: var(--font-sans);
@@ -54,6 +77,33 @@
 
     img { display: block; max-width: 100%; }
     a   { color: inherit; text-decoration: none; }
+
+
+    .skip-link {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 1000;
+      padding: 11px 16px;
+      border-radius: 3px;
+      background: var(--white);
+      color: var(--navy);
+      font-weight: 700;
+      transform: translateY(-160%);
+      transition: transform .18s ease;
+    }
+
+    .skip-link:focus { transform: translateY(0); }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 3px solid var(--navy);
+      outline-offset: 3px;
+    }
 
     .container {
       max-width: var(--max-w);
@@ -91,7 +141,10 @@
 
     /* ─── Buttons ──────────────────────────────────────────────────────── */
     .btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
       padding: 13px 26px;
       border-radius: 3px;
       font-family: var(--font-sans);
@@ -222,6 +275,9 @@
     }
 
     .nav-links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
       font-size: 13px;
       font-weight: 500;
       color: #0f1e2e;
@@ -247,12 +303,15 @@
       border: none;
       cursor: pointer;
       color: var(--navy);
-      padding: 4px;
+      min-width: 44px;
+      min-height: 44px;
+      padding: 11px;
     }
 
     /* ─── HERO ─────────────────────────────────────────────────────────────────── */
     .hero {
       min-height: 100vh;
+      min-height: 100svh;
       display: flex;
       align-items: center;
       background: #1a2535;  /* slightly lighter navy — visible while image loads */
@@ -289,7 +348,7 @@
     #heroBefore { z-index: 1; opacity: 1; }  /* CSS default visible, no JS needed */
     #heroVideo  { z-index: 2; opacity: 0; }
     #heroAfter  { z-index: 3; opacity: 0; }
-    #heroFinal  { z-index: 4; opacity: 0; }
+    #heroFinal  { z-index: 4; opacity: 1; }
 
     /* Transition class added by JS after first paint — prevents load flash */
     #heroBefore.cinematic,
@@ -517,7 +576,6 @@
     .section-portfolio {
       padding: 88px 24px;
       background: var(--cream);
-      scroll-margin-top: 150px;
     }
 
     .portfolio-project {
@@ -933,6 +991,31 @@
     .file-zone p   { font-size: 13px; color: var(--slate); margin-top: 6px; }
     .file-zone span { font-size: 11px; color: var(--mid); display: block; margin-top: 3px; }
 
+    .file-input {
+      width: 100%;
+      min-height: 44px;
+      margin-top: 10px;
+      padding: 8px;
+      color: var(--charcoal);
+      background: var(--cream);
+      border: 1.5px solid var(--border);
+      border-radius: 3px;
+      font: inherit;
+    }
+
+    .file-input::file-selector-button {
+      min-height: 36px;
+      margin-right: 12px;
+      padding: 8px 12px;
+      border: 0;
+      border-radius: 3px;
+      background: var(--navy);
+      color: var(--white);
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
     .form-note {
       font-size: 11px;
       color: var(--mid);
@@ -1041,7 +1124,7 @@
       font-weight: 500;
       letter-spacing: .18em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.35);
+      color: rgba(255,255,255,.50);
       margin-top: 2px;
       display: block;
     }
@@ -1081,14 +1164,14 @@
 
     .footer-legal {
       font-size: 11px;
-      color: rgba(255,255,255,.28);
+      color: rgba(255,255,255,.50);
       line-height: 1.65;
       max-width: 560px;
       margin-top: 14px;
     }
 
     .footer-legal strong {
-      color: rgba(255,255,255,.38);
+      color: rgba(255,255,255,.50);
       font-weight: 500;
     }
 
@@ -1197,6 +1280,7 @@
 
     /* ─── Mobile ──────────────────────────────────────────────────────────────────── */
     @media (max-width: 768px) {
+      html { scroll-padding-top: 136px; }
       .nav { height: 116px; }
       .nav-logo-img { height: 100px; }
       .nav-links { display: none; }
@@ -1230,13 +1314,60 @@
       .hero-copy-panel { padding: 28px 24px 30px; }
     }
 
+    @media (min-width: 769px) and (max-height: 800px) {
+      .hero {
+        align-items: flex-start;
+        padding-top: 172px;
+        padding-bottom: 32px;
+      }
+      .hero-copy-panel { padding: 24px 32px 26px; }
+      .hero-badge { margin-bottom: 18px; }
+      .hero-h {
+        font-size: clamp(42px, 4.2vw, 54px);
+        margin-bottom: 18px;
+      }
+      .hero-sub {
+        line-height: 1.6;
+        margin-bottom: 26px;
+      }
+    }
+
     @media (max-width: 520px) {
+      .hero {
+        align-items: flex-start;
+        padding: 136px 12px 32px;
+      }
+      .hero-copy-panel { padding: 20px 22px 22px; }
+      .hero-badge {
+        margin-bottom: 18px;
+        padding: 5px 10px;
+        font-size: 9.5px;
+        letter-spacing: .12em;
+      }
+      .hero-h {
+        font-size: clamp(30px, 9vw, 38px);
+        margin-bottom: 18px;
+      }
+      .hero-sub {
+        font-size: 14.5px;
+        line-height: 1.52;
+        margin-bottom: 24px;
+      }
       .hero-ctas { flex-direction: column; }
       .contact-form { padding: 26px 20px; }
     }
 
     @media (max-width: 390px) {
       .services-grid { grid-template-columns: minmax(0, 1fr); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
     }
   
     /* ─── Hero end-state prompt ──────────────────────────────────────────── */
@@ -1302,19 +1433,35 @@
     }
 
   </style>
+  <noscript>
+    <style>
+      .comparison-slider { display: grid; aspect-ratio: auto; gap: 12px; background: transparent; box-shadow: none; }
+      .comparison-slider img,
+      .comparison-slider .comparison-before { position: static; width: 100%; height: auto; object-fit: contain; }
+      .comparison-label,
+      .comparison-line,
+      .comparison-handle,
+      .comparison-range { display: none; }
+      .comparison-instruction { display: none; }
+    </style>
+  </noscript>
 </head>
 
 <body>
 
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
   <!-- NAV -->
-  <nav class="nav">
+  <header class="site-header">
+  <nav class="nav" aria-label="Primary navigation">
     <div class="nav-inner">
       <a href="#hero" class="nav-logo" aria-label="360 Design &amp; Construction — Home">
-        <img src="./images/logo.png" alt="360 Design &amp; Construction" class="nav-logo-img" />
+        <img src="./images/logo.png" alt="360 Design &amp; Construction" class="nav-logo-img" width="2000" height="2000" decoding="async" />
       </a>
 
       <ul class="nav-links" id="navLinks">
         <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Work</a></li>
         <li><a href="#process">Begin the Process</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact" class="btn btn-gold nav-cta">Request a Consultation</a></li>
@@ -1329,21 +1476,16 @@
       </button>
     </div>
   </nav>
+  </header>
 
+  <main id="main-content" tabindex="-1">
 
   <!-- HERO -->
   <section class="hero" id="hero">
 
-    <!-- Hero media layers — flat structure, all positioned absolute inside .hero-media -->
+    <!-- Static hero image protects the primary message and avoids autoplay media. -->
     <div class="hero-media">
-      <!-- Layer 1: before.jpg — visible immediately by CSS, no JS dependency -->
-      <img id="heroBefore" src="./images/before.jpg" alt="" role="presentation" />
-      <!-- Layer 2: transformation video -->
-      <video id="heroVideo" src="./images/before-after.mp4" muted playsinline preload="metadata"></video>
-      <!-- Layer 3: finished room reveal -->
-      <img id="heroAfter" src="./images/after.jpg" alt="Completed renovation — 360 Design &amp; Construction, Tulsa" />
-      <!-- Layer 4: final resting state -->
-      <img id="heroFinal" src="./images/after-after.jpg" alt="360 Design &amp; Construction — finished space" />
+      <img id="heroFinal" src="./images/after-after.jpg" alt="Interior with warm wood finishes and layered lighting" width="2000" height="2000" loading="eager" fetchpriority="high" decoding="async" />
     </div>
 
     <!-- Gradient overlay for text readability -->
@@ -1364,13 +1506,6 @@
           <a href="#portfolio" class="btn btn-outline-white">See Our Work</a>
         </div>
       </div>
-    </div>
-
-    <!-- End-state prompt: fades in after final photo, stays visible until scroll -->
-    <div class="hero-endstate" id="heroEndState">
-      <p class="hero-endstate-heading">Ready to improve your space?</p>
-      <p class="hero-endstate-body">See what happens from the first conversation through the final walkthrough.</p>
-      <a href="#process" class="hero-endstate-link">Begin the Process &#x2193;</a>
     </div>
 
   </section>
@@ -1458,26 +1593,26 @@
   <section class="section-portfolio" id="portfolio">
     <div class="container">
       <div class="section-hdr">
-        <p class="eyebrow">Transformation Journal</p>
-        <h2 class="section-h">Real Spaces. Clearer Possibilities.</h2>
-        <p class="section-sub">Explore a few of the real projects behind 360 Design &amp; Construction—where a thoughtful plan turns a worn space into one that works better for everyday life.</p>
+        <p class="eyebrow">Project Views</p>
+        <h2 class="section-h">One Kitchen, Two Available Views</h2>
+        <p class="section-sub">Compare the available views of this kitchen space. They are presented as project views and are not labeled as a verified before-and-after sequence.</p>
       </div>
 
       <article class="portfolio-project">
         <div class="comparison-slider" data-comparison>
-          <img class="comparison-after" src="./images/portfolio-kitchen-after.jpg" alt="Kitchen after renovation with navy cabinetry, new counters, flooring, and lighting" />
-          <img class="comparison-before" src="./images/portfolio-kitchen-before.jpg" alt="Kitchen before renovation with worn cabinetry and countertop" />
-          <span class="comparison-label comparison-label--before" aria-hidden="true">Before</span>
-          <span class="comparison-label comparison-label--after" aria-hidden="true">After</span>
+          <img class="comparison-after" src="./images/portfolio-kitchen-after.jpg" alt="Kitchen view with navy cabinetry, counters, flooring, and pendant lighting" width="1169" height="735" loading="lazy" decoding="async" />
+          <img class="comparison-before" src="./images/portfolio-kitchen-before.jpg" alt="Kitchen view with light cabinetry and a patterned countertop" width="1170" height="636" loading="lazy" decoding="async" />
+          <span class="comparison-label comparison-label--before" aria-hidden="true">View A</span>
+          <span class="comparison-label comparison-label--after" aria-hidden="true">View B</span>
           <span class="comparison-line" aria-hidden="true"></span>
           <span class="comparison-handle" aria-hidden="true">&#x2039;&#x203A;</span>
           <input class="comparison-range" type="range" min="0" max="100" value="50"
-                 aria-label="Move the slider to compare the kitchen before and after renovation" />
+                 aria-label="Move the slider to compare two kitchen project views" />
         </div>
-        <p class="comparison-instruction">Drag to see the transformation</p>
+        <p class="comparison-instruction">Drag or use the arrow keys to compare views</p>
         <div class="portfolio-caption">
-          <h3>From Worn to Welcoming</h3>
-          <p>Updated cabinetry, counters, flooring, fixtures, and lighting give this kitchen a cleaner look and a more practical everyday flow.</p>
+          <h3>Kitchen Project Views</h3>
+          <p>Use the comparison control to inspect the cabinetry, counters, flooring, fixtures, and lighting visible in each supplied image.</p>
         </div>
       </article>
 
@@ -1599,7 +1734,7 @@
     <div class="container">
       <div class="cta-close-inner">
         <h2 class="cta-close-h">Ready to talk about your project?</h2>
-        <p class="cta-close-sub">The first step is a simple conversation. No obligation. No sales pitch. Tell us what you are working on and we will be in touch within one business day.</p>
+        <p class="cta-close-sub">The first step is a simple conversation. No obligation. No sales pitch. Tell us what you are working on and we will follow up to discuss your space.</p>
         <a href="#contact" class="btn btn-gold" style="padding:14px 32px;font-size:14px;">Request a Project Consultation</a>
       </div>
     </div>
@@ -1629,32 +1764,10 @@
                 <span>Tulsa, Oklahoma &amp; surrounding areas</span>
               </div>
             </div>
-            <!-- CODE NOTE: Add Alena's phone number here when confirmed. Uncomment the block below.
-            <div class="cdet">
-              <div class="cdet-icon">&#128222;</div>
-              <div>
-                <strong>Phone</strong>
-                <span>INSERT_PHONE_NUMBER</span>
-              </div>
-            </div>
-            -->
-            <!-- CODE NOTE: Add Alena's email address here when confirmed. Uncomment the block below.
-            <div class="cdet">
-              <div class="cdet-icon">&#9993;</div>
-              <div>
-                <strong>Email</strong>
-                <span>INSERT_EMAIL_ADDRESS</span>
-              </div>
-            </div>
-            -->
+            <!-- Public contact remains form-only pending separate approval. -->
           </div>
         </div>
 
-        <!-- Netlify Forms wiring:
-             Fields wired: name, phone, email, project_address, project_type, budget, timeline, photos, message
-             Do NOT rename these field name attributes. Netlify keys off them.
-             To test: submit a real entry, then check the Netlify Forms dashboard under Project > Forms.
-             Add action="/thank-you.html" if you create a standalone thank-you page. -->
         <form class="contact-form" id="estimateForm"
               method="POST"
               name="project-consultation"
@@ -1664,30 +1777,10 @@
 
           <input type="hidden" name="form-name" value="project-consultation" />
           <input type="text" name="bot-field" style="display:none;" tabindex="-1" aria-hidden="true" />
-          <!-- Lead source — auto-populated for Airtable routing -->
           <input type="hidden" name="lead_source" value="360 Website" />
-          <!--
-            FUTURE ROUTING — Airtable / 360 Contacts
-            When ready, add a Netlify Form webhook notification:
-              app.netlify.com → Site → Forms → project-consultation → Notifications → Add webhook
-            Point to a Make / Zapier / n8n workflow that maps fields to the
-            "360 Contacts" Airtable table:
-              name             → Name
-              phone            → Phone
-              email            → Email
-              project_address  → Project Address
-              project_type     → Project Type
-              budget           → Estimated Budget
-              timeline         → Timeline
-              message          → Message
-              lead_source      → Lead Source  (value: "360 Website")
-            On record create: set Status = "New", Date Submitted = timestamp
-            Do NOT expose Airtable API keys in this file.
-            See: TREW / Bright Current Media lead tracking for future workflow connection.
-          -->
 
           <div class="form-h">Request a Project Consultation</div>
-          <div class="form-h-sub">We will follow up within one business day to set up a conversation about your project.</div>
+          <div class="form-h-sub">We will follow up to set up a conversation about your project.</div>
 
           <div class="frow">
             <div class="fgroup">
@@ -1752,13 +1845,13 @@
           </div>
 
           <div class="fgroup">
-            <label>Project Photos (Optional)</label>
-            <div class="file-zone" onclick="document.getElementById('f-photos').click()">
+            <label for="f-photos">Project Photos (Optional)</label>
+            <label class="file-zone" for="f-photos">
               <div style="font-size:18px;color:var(--mid);">&#128247;</div>
-              <p>Click to attach photos of your space</p>
-              <span>JPG, PNG, HEIC up to 10MB each</span>
-              <input type="file" id="f-photos" name="photos" multiple accept="image/*" style="display:none;" />
-            </div>
+              <p>Choose photos of your space</p>
+              <span id="photos-help">JPG, PNG, or HEIC. Avoid uploading documents or images containing information you do not want included with your inquiry.</span>
+            </label>
+            <input class="file-input" type="file" id="f-photos" name="photos" multiple accept="image/*" aria-describedby="photos-help" />
           </div>
 
           <div class="fgroup">
@@ -1768,7 +1861,7 @@
 
           <button type="submit" class="btn btn-navy form-submit">Request a Project Consultation</button>
 
-          <p class="form-note">Your information is used only to respond to your project inquiry.</p>
+          <p class="form-note">Your information, including any photos you attach, is used only to review and respond to your project inquiry.</p>
 
         </form>
 
@@ -1787,6 +1880,8 @@
     </div>
   </section>
 
+  </main>
+
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -1796,7 +1891,7 @@
 
         <div class="footer-brand">
           <div class="footer-logo-wrap">
-          <img src="./images/logo-dark-bg.png" alt="360 Design &amp; Construction" class="footer-logo-img" />
+          <img src="./images/logo-dark-bg.png" alt="360 Design &amp; Construction" class="footer-logo-img" width="2000" height="2000" loading="lazy" decoding="async" />
           </div>
           <p>Helping property owners improve, renovate, and reimagine spaces through practical design, quality workmanship, and clear communication.</p>
         </div>
@@ -1817,6 +1912,7 @@
           <h5>Company</h5>
           <ul>
             <li><a href="#about">About Alena</a></li>
+            <li><a href="#portfolio">Work</a></li>
             <li><a href="#process">Begin the Process</a></li>
             <li><a href="#contact">Request a Consultation</a></li>
           </ul>
@@ -1854,33 +1950,13 @@
 
     /* ── Photo upload label ── */
     document.getElementById('f-photos').addEventListener('change', function() {
-      var p = this.closest('.file-zone').querySelector('p');
+      var p = this.closest('.fgroup').querySelector('.file-zone p');
       p.textContent = this.files.length
         ? this.files.length + ' photo' + (this.files.length > 1 ? 's' : '') + ' selected'
-        : 'Click to attach photos of your space';
+        : 'Choose photos of your space';
     });
 
-    /* ── Consultation form — async submit + inline thank-you ───────────────────
-       Submits to Netlify Forms via fetch. No page redirect.
-       Uses FormData so file uploads (photos) are preserved.
-
-       EMAIL NOTIFICATIONS (one-time Netlify dashboard setup):
-         app.netlify.com → Site → Forms → project-consultation
-         → Notifications → Add notification → Email notification
-         Add: 360mydesign@gmail.com and/or Bright Current Media email
-         Netlify sends from formresponses@netlify.com; reply-to = visitor email.
-         For branded email, add Resend / SendGrid / Mailgun layer later.
-
-       AIRTABLE ROUTING (future):
-         app.netlify.com → Site → Forms → project-consultation
-         → Notifications → Add notification → Outgoing webhook
-         Point to Make / Zapier / n8n → Airtable "360 Contacts" table
-         Do NOT put API keys here. Webhook URL goes in Netlify dashboard only.
-    ─────────────────────────────────────────────────────────────────────────── */
-    /* Booking calendar configuration.
-       Replace the empty value with Alena's approved public HTTPS booking-page URL.
-       The scheduling CTAs remain hidden until a valid URL is present, preventing
-       visitors from reaching a placeholder or Alena's private calendar. */
+    /* Consultation form: preserve the protected Netlify field and FormData contract. */
     var bookingUrl = '';
     if (/^https:\/\//i.test(bookingUrl)) {
       document.querySelectorAll('[data-booking-link]').forEach(function (link) {
@@ -1922,23 +1998,13 @@
           submitBtn.textContent = 'Request a Project Consultation';
           var err = document.createElement('p');
           err.className   = 'form-error';
+          err.setAttribute('role', 'alert');
           err.textContent = 'Something went wrong. Please try again or contact us directly.';
           form.appendChild(err);
         });
       });
     }
 
-    /* ── Cinematic hero sequence ────────────────────────────────────────────────────────────────────────
-       z-index stacking handles cross-fades. Higher layers cover lower ones.
-       No need to explicitly fade OUT lower layers — they are covered.
-
-       Stage 1 : before.jpg (z-1)     — CSS default, visible immediately
-       Stage 2 : before-after.mp4 (z-2) — fades IN at t=6.5s, covers before.jpg
-       Stage 3 : after.jpg (z-3)      — fades IN after video ends, covers video
-       Stage 4 : after-after.jpg (z-4) — fades IN at +2.5s, covers after.jpg
-       Overlay (z-5)                  — lightens at t=5s when text fades
-       Fallback : autoplay blocked or video error → skip to stage 3 → stage 4
-    ─────────────────────────────────────────────────────────────────────────── */
     /* Accessible before-and-after comparison */
     (function () {
       var comparisons = document.querySelectorAll('[data-comparison]');
@@ -2000,73 +2066,6 @@
       });
     })();
 
-    (function () {
-      var heroBefore  = document.getElementById('heroBefore');
-      var heroVideo   = document.getElementById('heroVideo');
-      var heroAfter   = document.getElementById('heroAfter');
-      var heroFinal   = document.getElementById('heroFinal');
-      var overlay     = document.querySelector('.hero-overlay');
-      var heroContent = document.getElementById('heroContent');
-
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        if (heroFinal) heroFinal.classList.add('media-visible');
-        return;
-      }
-
-      // Add transition class after first paint to prevent load flash
-      requestAnimationFrame(function () {
-        [heroBefore, heroVideo, heroAfter, heroFinal].forEach(function (el) {
-          if (el) el.classList.add('cinematic');
-        });
-      });
-
-      // t=5s: text fades, overlay becomes nearly transparent
-      setTimeout(function () {
-        if (heroContent) heroContent.classList.add('hero-copy--faded');
-        if (overlay) overlay.classList.add('hero-overlay--light');
-      }, 5000);
-
-      // Stage 4: final image fades in 2.5s after after.jpg
-      function showFinal() {
-        setTimeout(function () {
-          if (heroFinal) heroFinal.classList.add('media-visible');
-          // After final image transition completes, fade in end-state prompt
-          setTimeout(function () {
-            var endState = document.getElementById('heroEndState');
-            if (endState) endState.classList.add('visible');
-          }, 1600);
-        }, 2500);
-      }
-
-      // Stage 3: after.jpg fades in
-      var endFallback;
-      function showAfter() {
-        clearTimeout(endFallback);
-        if (heroAfter) heroAfter.classList.add('media-visible');
-        showFinal();
-      }
-
-      // Stage 2: video fades in at t=6.5s
-      setTimeout(function () {
-        if (!heroVideo) { showAfter(); return; }
-        heroVideo.classList.add('media-visible');
-        var playPromise = heroVideo.play();
-        if (playPromise !== undefined) {
-          playPromise.then(function () {
-            endFallback = setTimeout(showAfter, 30000); // safety net if ended never fires
-          }).catch(function () {
-            // Autoplay blocked -- hide video, jump to stage 3
-            heroVideo.classList.remove('media-visible');
-            showAfter();
-          });
-        }
-      }, 6500);
-
-      if (heroVideo) {
-        heroVideo.addEventListener('ended', showAfter);
-        heroVideo.addEventListener('error', showAfter);
-      }
-    })();
   </script>
 
 </body>
