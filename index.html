@@ -935,6 +935,14 @@
     }
 
     .file-zone:hover { border-color: var(--gold); }
+
+    .file-zone:focus-visible {
+      border-color: var(--gold);
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+      background: var(--white);
+    }
+
     .file-zone p   { font-size: 13px; color: var(--slate); margin-top: 6px; }
     .file-zone span { font-size: 11px; color: var(--mid); display: block; margin-top: 3px; }
 
@@ -1762,7 +1770,7 @@
 
           <div class="fgroup">
             <label>Project Photos (Optional)</label>
-            <div class="file-zone" onclick="document.getElementById('f-photos').click()">
+            <div class="file-zone" id="photo-zone" tabindex="0" role="button" aria-label="Attach photos of your space">
               <div style="font-size:18px;color:var(--mid);">&#128247;</div>
               <p>Click to attach photos of your space</p>
               <span>JPG, PNG, HEIC up to 10MB each</span>
@@ -1861,7 +1869,20 @@
       a.addEventListener('click', function() { setMenuState(false); });
     });
 
-    /* ── Photo upload label ── */
+    /* ── Photo upload ── */
+    var photoZone = document.getElementById('photo-zone');
+
+    photoZone.addEventListener('click', function() {
+      document.getElementById('f-photos').click();
+    });
+
+    photoZone.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault();
+        document.getElementById('f-photos').click();
+      }
+    });
+
     document.getElementById('f-photos').addEventListener('change', function() {
       var p = this.closest('.file-zone').querySelector('p');
       p.textContent = this.files.length
