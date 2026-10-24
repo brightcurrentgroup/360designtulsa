@@ -7,6 +7,7 @@ archive/
 # Preserve source assets locally but publish only the approved website allowlist.
 images/*
 !images/logo.png
+!images/logo-dark-bg.png
 !images/before.jpg
 !images/before-after.mp4
 !images/after.jpg
